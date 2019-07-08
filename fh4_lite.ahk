@@ -39,7 +39,8 @@ MODELNUM = 1
 
 ; max money
 MONEY = 30
-HOWMANY = 1
+
+
 FOUNDCAR = 0
 
 
@@ -47,36 +48,20 @@ FOUNDCAR = 0
 q::
 Loop, 10000
 {
-	Loop
-	{ ; be sure we returned to main menu
-		PixelGetColor, PixColor, 603, 702
-		if (PixColor = "0xFFFFFF")
-		{
-			Send {Enter}
-			Sleep, 35 ; 35
-			break
-		}
-	}
+	Send {Enter}
+	Sleep, 500
 	
 	; search options
 
-	Loop
-	{
-		PixelGetColor, PixColor, 659, 391
-		if (PixColor = "0x93B700")
-		{
-			break
-		}
-	}
 	Loop, 6
 	{
 		Send {Up}
-		Sleep, 30 ; 35
+		Sleep, 35 ; 35
 	}
 	Loop, %MANNUM%
 	{
 		Send %MANDIR%
-		Sleep, 40 ; 40
+		Sleep, 35 ; 40
 	}
 
 	Send {Down}
@@ -85,17 +70,17 @@ Loop, 10000
 	Loop, %MODELNUM%
 	{
 		Send %MODELDIR%
-		Sleep, 35 ; 40
+		Sleep, 40 ; 40
 	}
 	Loop, 4
 	{
 		Send {Down}
-		Sleep, 30 ; 35		
+		Sleep, 35 ; 35		
 	}
 	Loop, %MONEY%
 	{
 		Send {Right}
-		Sleep, 30 ; 35
+		Sleep, 35 ; 35
 	}
 
 	Send {Down}
@@ -106,14 +91,14 @@ Loop, 10000
 	; cars list
 
 	Sleep, 1100 ; 1100
-	PixelGetColor, PixColor0, 161, 326
+	PixelGetColor, PixColor0, 307, 363
 	if (PixColor0 = "0xFFFFFF")
 	{
 		FOUNDCAR = 1
 		Loop
 		{
 			; click when site loaded
-			PixelGetColor, PixColor, 264, 401
+			PixelGetColor, PixColor, 397, 403
 			if (PixColor != "0xFFFFFF")
 			{
 				Send {Y}
@@ -129,56 +114,18 @@ Loop, 10000
 
 	if(FOUNDCAR = 1)
 	{
-		Loop
-		{
-			PixelGetColor, PixColor, 974, 559
-			if (PixColor = "0xFFFFFF")
-			{
-				Send {Down}
-				Sleep, 30
-				Send {Enter}
-				Sleep, 30	
-				break
-			}
-		}
+		Sleep, 400
+		Send {Down}
+		Sleep, 30
+		Send {Enter}
+		Sleep, 400
+		Send {Enter}
 
-		Loop
-		{
-			PixelGetColor, PixColor, 883, 445
-			if (PixColor = "0xFFFFFF")
-			{
-				Send {Enter}
-				break
-			}
-		}
 		
 		; check if bought
 		Sleep 10000
-		Send {Enter}
-		Sleep, 5000
-		Send {Esc}
-		Sleep, 5000
-		Send {Enter}
-		Sleep, 5000
-		Loop
-		{
-			PixelGetColor, PixColor, 179, 797
-			if (PixColor = "0xFFFFFF")
-			{
-				FOUNDCAR = 0
-				HOWMANY--
-				Send {Esc}
-				Sleep, 2000
-				Send {Esc}
-				Sleep, 2000
-				break
-			}
-			if(HOWMANY = 0) 
-			{
-				return
-			}
-		}				
+		return			
 	}
 
-Sleep, 1000 ; 1800
+Sleep, 1800 ; 1800
 }
