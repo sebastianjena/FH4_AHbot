@@ -28,14 +28,14 @@ Nissan GTR PO LEFT 37 RIGHT 7
 ; Enter direction in braces {LEFT OR RIGHT}
 MANDIR = {RIGHT}
 ; Enter number of times
-MANNUM = 44
+MANNUM = 24
 
  
 ;Car Model
 ; Enter direction in braces {LEFT OR RIGHT}
 MODELDIR = {RIGHT}
 ; Enter number of times
-MODELNUM = 1
+MODELNUM = 8
 
 ; max money
 MONEY = 30
